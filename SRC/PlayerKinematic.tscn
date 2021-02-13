@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0.227451, 1, 1 )
+
+[sub_resource type="CapsuleMesh" id=2]
+mid_height = 2.0
+
+[sub_resource type="CapsuleShape" id=3]
+height = 2.0
+
+[sub_resource type="CylinderShape" id=4]
+height = 1.0
+
+[node name="Player" type="KinematicBody" groups=[
+"Player",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+collision_layer = 2
+collision_mask = 13
+script = ExtResource( 1 )
+SPEED = 15.0
+ACELERATION = 6.0
+GRAVITY = 1.0
+SNAP_DISTANCE = 0.5
+JUMP_FORCE = 30.0
+AIR_CONTROL = 0.3
+THROW_SPEED = 10.0
+SENSIBILITY = 0.2
+
+[node name="Mesh" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+
+[node name="Body" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Feet" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0 )
+shape = SubResource( 4 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+current = true
+
+[node name="Object" type="Position3D" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+
+[node name="Seek" type="RayCast" parent="Head/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -4 )
+collision_mask = 13
+collide_with_areas = true
+
+[node name="GroundCheck" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.2, 0 )
+collision_mask = 13

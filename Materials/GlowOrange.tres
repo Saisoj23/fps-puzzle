@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Materials/GlowShader.tres" type="Shader" id=1]
+[ext_resource path="res://Textures/tile_lab.png" type="Texture" id=2]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/Color = Color( 1, 0.490196, 0, 1 )
+shader_param/Intensity = 0.0
+shader_param/Texture = ExtResource( 2 )

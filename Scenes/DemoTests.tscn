@@ -1,0 +1,133 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://SRC/Conductor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SRC/PlayerKinematic.tscn" type="PackedScene" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 20, 0.5, 20 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2, 5, 2 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 2, 5, 20 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody"]
+width = 40.0
+height = 1.0
+depth = 40.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.92006, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody2"]
+width = 4.0
+height = 10.0
+depth = 4.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+shape = SubResource( 2 )
+
+[node name="StaticBody3" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.78827, 4.92006, -11.5243 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody3"]
+width = 4.0
+height = 10.0
+depth = 4.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
+shape = SubResource( 2 )
+
+[node name="StaticBody4" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.21159, 4.92006, -11.5243 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody4"]
+width = 4.0
+height = 10.0
+depth = 4.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody4"]
+shape = SubResource( 2 )
+
+[node name="StaticBody5" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.21159, 4.92006, 10.4752 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody5"]
+width = 4.0
+height = 10.0
+depth = 4.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody5"]
+shape = SubResource( 2 )
+
+[node name="StaticBody6" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1086, 4.92006, 10.4752 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody6"]
+width = 4.0
+height = 10.0
+depth = 4.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody6"]
+shape = SubResource( 2 )
+
+[node name="StaticBody7" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3436, 4.92006, 0.0391541 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody7"]
+width = 4.0
+height = 10.0
+depth = 40.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody7"]
+shape = SubResource( 3 )
+
+[node name="StaticBody8" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8459, 4.92006, 0.0391541 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody8"]
+width = 4.0
+height = 10.0
+depth = 40.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody8"]
+shape = SubResource( 3 )
+
+[node name="StaticBody9" type="StaticBody" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.783596, 4.92006, 19.4902 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody9"]
+width = 4.0
+height = 10.0
+depth = 40.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody9"]
+shape = SubResource( 3 )
+
+[node name="StaticBody10" type="StaticBody" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.783596, 4.92006, -18.9599 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody10"]
+width = 4.0
+height = 10.0
+depth = 40.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody10"]
+shape = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.22201, -8.74228 )
+
+[node name="Conductor" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90097, 3.50952, 6.90705 )
+
+[node name="Conductor2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.673384, 4.0778, 8.11656 )
