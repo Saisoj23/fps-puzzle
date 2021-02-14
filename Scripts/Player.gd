@@ -57,7 +57,7 @@ func _physics_process(delta):
 	
 func _input(event):
 	#move camera
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(deg2rad(-event.relative.x * SENSIBILITY))
 		head.rotate_x(deg2rad(-event.relative.y * SENSIBILITY))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
@@ -101,30 +101,31 @@ func apply_collitions():
 			collision.collider.apply_central_impulse(-collision.normal)
 			
 func holding_check():
-	if Input.is_action_just_pressed("fire1"):
-		if is_holding:
-			if object_holding != null:
-				object_holding.set_target(null)
-			is_holding = false
-			hold_position.rotation = Vector3.ZERO
-			object_holding = null
-		elif !is_holding && eye.is_colliding():
-			var object = eye.get_collider()
-			if object.is_in_group("Bodies"):
-				is_holding = true
-				object_holding = object
-				object_holding.target = hold_position
-				hold_position.global_transform.basis = object_holding.global_transform.basis
-			elif object.is_in_group("Button"):
-				object.get_parent().press()
-				
-	if Input.is_action_just_pressed("fire2"):
-		if is_holding && object_holding != null:
-			object_holding.target = null
-			var a = head.global_transform.origin
-			var b = object_holding.global_transform.origin
-			object_holding.linear_velocity = (b-a)*THROW_SPEED
-			is_holding = false
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if Input.is_action_just_pressed("fire1"):
+			if is_holding:
+				if object_holding != null:
+					object_holding.set_target(null)
+				is_holding = false
+				hold_position.rotation = Vector3.ZERO
+				object_holding = null
+			elif !is_holding && eye.is_colliding():
+				var object = eye.get_collider()
+				if object.is_in_group("Bodies"):
+					is_holding = true
+					object_holding = object
+					object_holding.target = hold_position
+					hold_position.global_transform.basis = object_holding.global_transform.basis
+				elif object.is_in_group("Button"):
+					object.get_parent().press()
+					
+		if Input.is_action_just_pressed("fire2"):
+			if is_holding && object_holding != null:
+				object_holding.target = null
+				var a = head.global_transform.origin
+				var b = object_holding.global_transform.origin
+				object_holding.linear_velocity = (b-a)*THROW_SPEED
+				is_holding = false
 			
 		
 	if is_holding:

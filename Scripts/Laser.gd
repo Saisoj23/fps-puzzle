@@ -18,8 +18,8 @@ func _physics_process(delta):
 			col.destroy()
 		if col.is_in_group("Player"):
 			var point = harm_ray.get_collision_point()
-			var push = (col.translation + Vector3(0.0, point.y - col.translation.y, 0.0)) - point - col.velocity
-			col.move_and_slide(push)
+			var push = ((col.translation + Vector3(0.0, point.y - col.translation.y, 0.0)) - point) * 5 - col.velocity
+			col.velocity += push
 	
 
 	

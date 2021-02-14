@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var post = ResourceLoader.load("res://Materials/Enviroment.tres")
+var post = preload("res://Materials/Enviroment.tres")
 
 onready var enviroment = $WorldEnvironment
 

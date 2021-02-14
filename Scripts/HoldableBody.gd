@@ -5,6 +5,8 @@ onready var mesh: = $Mesh
 onready var tween: = $Tween
 onready var col = $CollisionShape
 
+var burn_material
+
 const HOLD_SPEED = 20
 const HOLD_ROTATION_SPEED = 10
 
@@ -14,6 +16,12 @@ var initial_weight: float
 
 var target: Position3D setget set_target
 var targetting: = false
+
+func _init():
+	burn_material = Colors.burn_material.duplicate()
+	
+func _ready():
+	mesh.material_override = burn_material
 
 func set_target (value: Position3D):
 	target = value
@@ -44,7 +52,7 @@ func destroy():
 	linear_damp = 5
 	col.disabled = true
 	gravity_scale = -0.1
-	mesh.material_override = Colors.burn_material
+	mesh.material_override = burn_material
 	tween.interpolate_property(mesh.material_override, "shader_param/Scalar", 
 	1.0, 0.0, 1, Tween.TRANS_LINEAR)
 	tween.start()
