@@ -18,7 +18,7 @@ operator = 2
 
 [resource]
 code = "shader_type spatial;
-render_mode depth_draw_always, cull_disabled, specular_schlick_ggx;
+render_mode depth_draw_always, cull_disabled, specular_schlick_ggx, async_visible;
 
 uniform sampler2D Texture : hint_albedo;
 uniform vec4 Color : hint_color;

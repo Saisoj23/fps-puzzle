@@ -103,13 +103,12 @@ func apply_collitions():
 func holding_check():
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if Input.is_action_just_pressed("fire1"):
-			if is_holding:
-				if object_holding != null:
-					object_holding.set_target(null)
+			if is_holding && is_instance_valid(object_holding):
+				object_holding.set_target(null)
 				is_holding = false
 				hold_position.rotation = Vector3.ZERO
 				object_holding = null
-			elif !is_holding && eye.is_colliding():
+			elif eye.is_colliding():
 				var object = eye.get_collider()
 				if object.is_in_group("Bodies"):
 					is_holding = true
@@ -120,7 +119,7 @@ func holding_check():
 					object.get_parent().press()
 					
 		if Input.is_action_just_pressed("fire2"):
-			if is_holding && object_holding != null:
+			if is_holding && object_holding && is_instance_valid(object_holding):
 				object_holding.target = null
 				var a = head.global_transform.origin
 				var b = object_holding.global_transform.origin
@@ -129,11 +128,11 @@ func holding_check():
 			
 		
 	if is_holding:
-		if object_holding != null:
+		if is_instance_valid(object_holding):
 			pass
 		else:
 			is_holding = false
-		if eye.is_colliding():
+		if eye.is_colliding() && is_instance_valid(object_holding):
 			if !(eye.get_collider().is_in_group("Bodies")): 
 				is_holding = false
 				hold_position.rotation = Vector3.ZERO
